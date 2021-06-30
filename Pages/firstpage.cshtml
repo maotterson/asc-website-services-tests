@@ -1,0 +1,14 @@
+﻿@page
+@model razordemo.Pages.Views.firstpageModel
+@{
+    ViewData["Title"] = "firstpage";
+}
+    <form asp-page="/secondpage" method="post">
+        <h2>Name</h2>
+        <input type="text" name="studentname" />
+
+        <h2>ID</h2>
+        <input type="text" name="studentid" />
+
+        <input type="submit" value="submit" />
+    </form>
