@@ -5,8 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Net.Http;
-using razordemo.Services;
-using razordemo.Models;
+using razordemo.Controllers;
 
 namespace razordemo.Pages
 {
@@ -16,6 +15,7 @@ namespace razordemo.Pages
         public string studentid { get; set; }
         [BindProperty]
         public string studentname { get; set; }
+        public String data { get; set; }
 
         public void OnGet()
         {
@@ -24,10 +24,7 @@ namespace razordemo.Pages
 
         public async Task<IActionResult> OnPost()
         {
-            Credentials credentials = new Credentials(studentid, studentname);
-            HttpResponseMessage response = await CheckInValidationService.validateCredentials(credentials);
-            string result = await response.Content.ReadAsStringAsync();
-            studentname = result;
+            data = await CheckInValidationController.post(studentid, studentname);
             return Page();
         }
     }
